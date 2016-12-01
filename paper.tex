@@ -1,4 +1,4 @@
-% Created 2016-11-30 Wed 17:09
+% Created 2016-11-30 Wed 17:24
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -39,7 +39,7 @@ conduct an experimental study to evaluate the accuracy and usability of this
 authentication method.
 \end{abstract}
 \section{Introduction and Motivation}
-\label{sec:orgd88076b}
+\label{sec:org557c212}
 
 It is well appreciated by experts and end-users alike that strong authentication is
 critical to cybersecurity and privacy, now and into the future. Unfortunately,
@@ -88,7 +88,7 @@ are custom-fitted to each individual, they will not be able to produce good
 electrical impedances when worn by a different individual.
 
 \section{Related Work}
-\label{sec:orge0e46dc}
+\label{sec:org08d7c07}
 The use of EEG as a biometric signal for user authentication has a short history.
 In 2005, Thorpe et al. motivate and outline the design of a passthoughts system,
 where users authenticate by thinking of a passthought rather than typing in a
@@ -131,7 +131,7 @@ know, no one has proposed or demonstrated a one-step three-factor
 authentication scheme.
 
 \section{Proposed project}
-\label{sec:org6246122}
+\label{sec:orge060800}
 
 We propose the first ever research study on one-step three-factor authentication.
 The study will yield a number of novel contributions to the literature. First, we
@@ -144,7 +144,7 @@ authentication. Fifth, we will evaluate the usability of custom-fit in-ear EEG
 hardware.
 
 \section{Research plan}
-\label{sec:org5e36c1a}
+\label{sec:orgad6a419}
 
 There will be four key components and major research tasks to this proposed
 study: (i) design and build custom-fit hardware, (ii) design and implement
@@ -218,7 +218,7 @@ several dimensions. They include the comfort and fit of the earpieces, the
 preparatory steps of using the devices, the ease and repeatability of the
 authentication tasks, and the recall rates of the personal secrets.
 \section{{\bfseries\sffamily TODO} Preliminary results}
-\label{sec:orgb471f1b}
+\label{sec:org9310aa7}
 
 We performed a very small pilot study (n=2) to better understand how feasible 
 our project would be. Our cursory analysis indicates that we can successfully
@@ -228,11 +228,33 @@ of the authenticator relies on the user's chosen secret, and not just the inhere
 factor of the user's unique signal (Section 5.3).
 
 \subsection{{\bfseries\sffamily TODO} Validation}
-\label{sec:orgdae54ad}
+\label{sec:org9fa2fd6}
 \subsection{{\bfseries\sffamily TODO} Authentication performance}
-\label{sec:org14de4b9}
+\label{sec:org993972c}
+
+Following [5], we \ldots{}..
+
+\begin{center}
+\begin{tabular}{lrrrrrr}
+task & Left ear &  & Right Ear &  & fp1 & \\
+\hline
+ & FAR & FRR & FAR & FRR & FAR & FRR\\
+\hline
+speech & 0 & 0 & 0 &  & 0 & 0\\
+face & 0 & 0 & 0 & 0.002 & 0 & 0\\
+breathe & 0 & 0 & 0 &  & 0 & 0\\
+listennoise & 0 & 0 & 0 &  & 0 & 0\\
+song (eyes open) & 0 & 0 & 0 &  & 0 & 0\\
+song & 0 & 0 & 0 &  & 0 & 0\\
+sequence & 0 & 0 & 0 &  & 0 & 0\\
+listentone & 0 & 0 & 0 & 0.009 & 0 & 0\\
+breathe (eyes open) & 0.039 & 0 & 0 &  & 0 & 0\\
+sport & 0.039 & 0.036 & 0 &  & 0 & 0\\
+\end{tabular}
+\end{center}
+
 \subsection{Disentangling inherence and knowledge}
-\label{sec:org91c37b4}
+\label{sec:orgec74458}
 
 Though our classifier's accuracy is strong, we still cannot say that it relies 
 on both knowledge and inherence to authenticate the subject. Is it the passthought
@@ -264,15 +286,14 @@ sport & 0.222 & 0.135 & 0\\
 \textbf{p-value} & \textbf{*0.0076} & \textbf{*0.009} & N/A\\
 \end{tabular}
 \end{center}
-Our low p-values (Table 3) indicate that the passthought, as well as the inherence
+Our low p-values (Table 2) indicate that the passthought, as well as the inherence
 factor associated with the custom-fit EEG earbud, both contribute to the classifier
 performance discussed in Section 5.2. We are confident, then, in our claim that this work
 could potentially yield multiple-factor authentication in a single step. However, we
 will need to collect a great deal more data to substantiate this claim rigorously.
 
-
 \section{Schedule and Budget}
-\label{sec:org1590dbf}
+\label{sec:org2f6eb19}
 We propose a 12-month schedule with two graduate students working on the
 project:
 
@@ -283,7 +304,7 @@ project:
 \item Months 9-12: data analysis; write and submit research papers
 \end{itemize}
 \section{References}
-\label{sec:org14ba974}
+\label{sec:org72eb964}
 
 [1]
 J. Chuang, One-Step Two-Factor Authentication with Wearable Bio-Sensors, Workshop on

@@ -1,4 +1,4 @@
-% Created 2016-11-30 Wed 17:24
+% Created 2016-12-02 Fri 17:24
 % Intended LaTeX compiler: pdflatex
 \documentclass[11pt]{article}
 \usepackage[utf8]{inputenc}
@@ -39,7 +39,7 @@ conduct an experimental study to evaluate the accuracy and usability of this
 authentication method.
 \end{abstract}
 \section{Introduction and Motivation}
-\label{sec:org557c212}
+\label{sec:org2e9e5c0}
 
 It is well appreciated by experts and end-users alike that strong authentication is
 critical to cybersecurity and privacy, now and into the future. Unfortunately,
@@ -88,7 +88,7 @@ are custom-fitted to each individual, they will not be able to produce good
 electrical impedances when worn by a different individual.
 
 \section{Related Work}
-\label{sec:org08d7c07}
+\label{sec:orgffd9d9b}
 The use of EEG as a biometric signal for user authentication has a short history.
 In 2005, Thorpe et al. motivate and outline the design of a passthoughts system,
 where users authenticate by thinking of a passthought rather than typing in a
@@ -131,7 +131,7 @@ know, no one has proposed or demonstrated a one-step three-factor
 authentication scheme.
 
 \section{Proposed project}
-\label{sec:orge060800}
+\label{sec:org3384355}
 
 We propose the first ever research study on one-step three-factor authentication.
 The study will yield a number of novel contributions to the literature. First, we
@@ -144,7 +144,7 @@ authentication. Fifth, we will evaluate the usability of custom-fit in-ear EEG
 hardware.
 
 \section{Research plan}
-\label{sec:orgad6a419}
+\label{sec:org126c1a5}
 
 There will be four key components and major research tasks to this proposed
 study: (i) design and build custom-fit hardware, (ii) design and implement
@@ -218,43 +218,84 @@ several dimensions. They include the comfort and fit of the earpieces, the
 preparatory steps of using the devices, the ease and repeatability of the
 authentication tasks, and the recall rates of the personal secrets.
 \section{{\bfseries\sffamily TODO} Preliminary results}
-\label{sec:org9310aa7}
+\label{sec:org8cc774c}
 
-We performed a very small pilot study (n=2) to better understand how feasible 
-our project would be. Our cursory analysis indicates that we can successfully
+We performed a very small pilot study (n=2) to better assess our projects' feasibility.
+Our cursory analysis indicates that we can successfully
 detect EEG signals from the ear (Section 5.1), that these signals can be used
 for reliable authentication among two people (Section 5.2), and that the success
 of the authenticator relies on the user's chosen secret, and not just the inherence
 factor of the user's unique signal (Section 5.3).
 
+\subsection{{\bfseries\sffamily TODO} Data collection}
+\label{sec:org758093f}
 \subsection{{\bfseries\sffamily TODO} Validation}
-\label{sec:org9fa2fd6}
-\subsection{{\bfseries\sffamily TODO} Authentication performance}
-\label{sec:org993972c}
+\label{sec:org7729653}
+\subsection{Authentication performance}
+\label{sec:org9e9cdb3}
 
-Following [5], we \ldots{}..
+Following [5], we use logarithmic binning to produce
+compressed feature vectors of a variable size. This technique
+has been show to offer robust, linear classifiability in healthy
+subjects. It is unique in its use of the entire frequency
+spectrum. Since EEG activity is associated with frequencies
+from 1-40Hz, we presume this range contains the majority of
+relevant signal. However, we do not rule out the possibility
+that useful signal exists in other frequency ranges. Muscular
+activity, for example, might be correlated with mental gestures
+in some cases. Logarithmic binning produces feature vectors
+biased toward known sources of signal, while still including
+data points from outside this frequency range that may be
+informative.
 
-\begin{center}
+We analyzed the EEG signals collected during the tasks
+using a support vector classifier (SVC). Since past work has
+shown that classification tasks in EEG-based BCI are linear
+[25], we used XGBoost, a popular tool for generating
+ensemble linear classifiers. For each task, for each participant, 
+100 seconds of data were
+collected in total across 10 trials of 10 seconds each, 
+resulting in 30 samples per participant, per task,
+following preprocessing.
+
+
+\begin{table}[htbp]
+\caption{Authentication accuracy for each sensor position. Left and right ears were a composite of three electrode positions along the helix, front of the ear canal, and back of the ear canal.}
+\centering
 \begin{tabular}{lrrrrrr}
 task & Left ear &  & Right Ear &  & fp1 & \\
 \hline
  & FAR & FRR & FAR & FRR & FAR & FRR\\
 \hline
-speech & 0 & 0 & 0 &  & 0 & 0\\
+speech & 0 & 0 & 0 & 0 & 0 & 0\\
 face & 0 & 0 & 0 & 0.002 & 0 & 0\\
-breathe & 0 & 0 & 0 &  & 0 & 0\\
-listennoise & 0 & 0 & 0 &  & 0 & 0\\
-song (eyes open) & 0 & 0 & 0 &  & 0 & 0\\
-song & 0 & 0 & 0 &  & 0 & 0\\
-sequence & 0 & 0 & 0 &  & 0 & 0\\
+breathe & 0 & 0 & 0 & 0 & 0 & 0\\
+listennoise & 0 & 0 & 0 & 0 & 0 & 0\\
+song (eyes open) & 0 & 0 & 0 & 0 & 0 & 0\\
+song & 0 & 0 & 0 & 0 & 0 & 0\\
+sequence & 0 & 0 & 0 & 0 & 0 & 0\\
 listentone & 0 & 0 & 0 & 0.009 & 0 & 0\\
-breathe (eyes open) & 0.039 & 0 & 0 &  & 0 & 0\\
-sport & 0.039 & 0.036 & 0 &  & 0 & 0\\
+breathe (eyes open) & 0.039 & 0 & 0 & 0 & 0 & 0\\
+sport & 0.039 & 0.036 & 0 & 0 & 0 & 0\\
 \end{tabular}
-\end{center}
+\end{table}
+
+Finally, for each subject, for each task, we trained a binary classifier 
+in the following manner: the right subject, performing the right task, were taken
+as positive examples. The wrong person, performing any task, were taken as negative
+examples. For a random, balanced subsample of those groups, we trained an ensemble
+binary classifier with XGboost. For the remainder of the data, we tested the 
+classifier's accuracy, measuring the false acceptance rate (FAR) and the false
+rejection rate (FRR) (Table 1).
+
+Overall, FAR and FRR were extremely low across the board. The right ear 
+performed better than the left ear (possibly because the reference was on
+the left ear, thus furthest from the right ear). In line with the 
+results of prior work, Fp1 performed better than either the left or the right ear,
+achieving perfect FAR and FRR scores on all tasks.
 
 \subsection{Disentangling inherence and knowledge}
-\label{sec:orgec74458}
+\label{sec:org310d6ff}
 
 Though our classifier's accuracy is strong, we still cannot say that it relies 
 on both knowledge and inherence to authenticate the subject. Is it the passthought
@@ -268,7 +309,9 @@ as the FAR for right-person, right-task. We calculated the FAR for each task, an
 a two-tailed t-test to determine our confidence that this set of FARs was drawn from
 from a different distribution from those generated during the right-person, right-task trials.
 
-\begin{center}
+\begin{table}[htbp]
+\caption{FARs for right-person, wrong-task, and p-values corresponding to confidence that these FARs were drawn from the same distribution as from the right-person-right-task trials.}
+\centering
 \begin{tabular}{lrrr}
 Task & Right ear & Left ear & fp1\\
 \hline
@@ -285,7 +328,8 @@ sport & 0.222 & 0.135 & 0\\
 \hline
 \textbf{p-value} & \textbf{*0.0076} & \textbf{*0.009} & N/A\\
 \end{tabular}
-\end{center}
+\end{table}
+
 Our low p-values (Table 2) indicate that the passthought, as well as the inherence
 factor associated with the custom-fit EEG earbud, both contribute to the classifier
 performance discussed in Section 5.2. We are confident, then, in our claim that this work
@@ -293,7 +337,7 @@ could potentially yield multiple-factor authentication in a single step. However
 will need to collect a great deal more data to substantiate this claim rigorously.
 
 \section{Schedule and Budget}
-\label{sec:org2f6eb19}
+\label{sec:org06119b2}
 We propose a 12-month schedule with two graduate students working on the
 project:
 
@@ -304,102 +348,135 @@ project:
 \item Months 9-12: data analysis; write and submit research papers
 \end{itemize}
 \section{References}
-\label{sec:org72eb964}
+\label{sec:orgcb67560}
+\setlength\parindent{0pt}
 
 [1]
 J. Chuang, One-Step Two-Factor Authentication with Wearable Bio-Sensors, Workshop on
 "Who are you?! Adventures in Authentication" (WAY'14), 10th USENIX Symposium on
 Usable Privacy and Security (SOUPS'14), 2014.
+\hspace{0pt} \\
 
 [2]
 J. Chuang, H. Nguyen, C. Wang, B. Johnson, I Think, Therefore I Am: Usability and
 Security of Authentication Using Brainwaves, Workshop on Usable Security (USEC'13),
 17th Int. Conference on Financial Cryptography and Data Security (FC’13), 2013.
+\hspace{0pt} \\
 
 [3]
 B. Johnson, T. Maillart, J. Chuang, My Thoughts are Not Your Thoughts: Robustness of
 Brainwave Signal Authentication Against Impersonation Attacks, Workshop on Usable
 Privacy \& Security for wearable and domestic Ubiquitous Devices, ACM UbiComp, 2014.
+\hspace{0pt} \\
 
 [4]
 M. Curran, J. Yang, N. Merrill, J. Chuang. Passthoughts Authentication with Low Cost
 EarEEG. Proc. 38th Intl. Conf. of IEEE Engineering in Medicine and Biology Society
 (EMBC 2016), Aug. 2016.
+\hspace{0pt} \\
 
 [5]
 N. Merrill, Maillart, Johnson, J. Chuang, Improving Physiological Signal Classification Using
 Logarithmic Quantization and a Progressive Calibration Technique, Proc. 2nd Intl. Conf. on
 Physiological Computing Systems (PhyCS'15), Feb. 2015.
+\hspace{0pt} \\
 
 [6]
 J. Thorpe, P. van Oorschot, and A. Somayaji. Pass-thoughts: Authenticating with our
 minds. In Proceedings of the New Security Paradigms Workshop (NSPW), 2005.
+\hspace{0pt} \\
 
 [7]
 M. Poulos, M. Rangoussi, N. Alexandris, and A. Evangelou. Person identification from the
 EEG using nonlinear signal classification. Methods of Information in Medicine, 2002.
+\hspace{0pt} \\
 
 [8]
 S. Marcel and J. del R. Millan. Person authentication using brainwaves (EEG) and
 maximum a posteriori model adaptation. IEEE Transactions on Pattern Analysis and
 Machine Intelligence, 29(4), April 2007.
+\hspace{0pt} \\
 
 [9]
 R. Palaniappan. Two-stage biometric authentication method using thought activity brain
 waves. International Journal of Neural Systems, 18(1):59–66, 2008.
+\hspace{0pt} \\
 
 [10]
 C. Ashby, A. Bhatia, F. Tenore, and J. Vogelstein. Low-cost electroencephalogram (EEG)
 based authentication. In Proc. of 5th Int. IEEE EMBS Conf. on Neural Engineering, 2011.
+\hspace{0pt} \\
 
 [11]
 D. Looney, C. Park, P. Kidmose, M. L. Rank, M. Ungstrup, K. Rosenkranz, and D. P.
 Mandic, “An in-the-ear platform for recording electroencephalogram,” in Proc. Int. Conf.
 IEEE Eng. Med. Biol. Soc., 2011, pp. 6682–6885.
+\hspace{0pt} \\
 
 [12]
 D. Looney, P. Kidmose, C. Park, M. Ungstrup, M. Rank, K. Rosenkranz, and D. Mandic,
 “The in-the-ear recording concept,” IEEE Pulse, vol. 3, no. 6, pp. 32–42, Nov./Dec. 2012.
+\hspace{0pt} \\
 
 [13]
 P. Kidmose, D. Looney, M. Ungstrup, M.L. Rank, D.P. Mandic, “A study of evoked
 potentials from ear-EEG,” IEEE Trans. Biomed. Eng. 60(10), pp. 2824–2830, 2013.
+\hspace{0pt} \\
 
 [14]
 P. Kidmose, D. Looney, and D. P. Mandic, “Ear-EEG from generic earpieces: a feasibility
 study,” in Proc. Int. Conf. IEEE Eng. Med. Biol. Soc., 2013, pp. 543-546.
+\hspace{0pt} \\
 
 [15] The Aware. \url{http://efitaware.com} [Online; accessed 22-Oct-2016].
+\hspace{0pt} \\
 
 [16] F. Monrose and A. Rubin. Authentication via keystroke dynamics. In Proceedings of the 4th
 ACM conference on Computer and communications security, pages 48–56. ACM, 1997.
+\hspace{0pt} \\
 
 [17]
 K. Stevens et al. Speaker authentication and identification: a comparison of spectrographic
 and auditory presentations of speech material. The Journal of the Acoustical Society of
 America 44.6 (1968): 1596-1607.
+\hspace{0pt} \\
 
 [18] Nymi. \url{https://nymi.com} [Online; accessed 22-Oct-2016].
+\hspace{0pt} \\
 
 [19] E. Strickland. In-Ear EEG Makes Unobtrusive Brain-Hacking Gadgets a Real Possibility.
 IEEE Spectrum, 7/7/2016.
+\hspace{0pt} \\
 
 [20]
 N. Merrill, M. Curran, J. Yang, J. Chuang. Classifying Mental Gestures with In-Ear EEG.
 Proc. 13th IEEE Intl. Conf. on Wearable and Implantable Body Sensor Networks (BSN
 2016), Jun. 2016.
+\hspace{0pt} \\
 
 [21]
 E. Sedenberg, J. Chuang, D. Mulligan. Designing Commercial Therapeutic Robots for
 Privacy Preserving Systems and Ethical Research Practices Within the Home. Intl. J. of
 Social Robotics, Aug. 2016.
+\hspace{0pt} \\
 
 [22] E. Sedenberg et al. A Window into the Soul: Biosensing in Public. Under review, 2017.
+\hspace{0pt} \\
 
 [23] R. Wong et al. “All that happens must be known”: Eliciting Values and Conceptions of
 Privacy using Science Fiction. Under review, 2017.
+\hspace{0pt} \\
 
 [24]
 R. Wong et al. Real-Imaginary Entanglements: Using Science Fiction and Design Fiction to
 Explore and Question Sensing and Tracking Technologies. Under review, 2017.
+\hspace{0pt} \\
+
+[25] D. Garrett, D. Peterson, C. Anderson, and M. Thaut, “Comparison
+of linear, nonlinear, and feature selection methods for eeg
+signal classification,” IEEE Transactions on Neural Systems and
+Rehabilitation Engineering, vol. 11, no. 2, pp. 141–144, Jun. 2003.
+[Online]. Available: \url{http://ieeexplore.ieee.org/lpdocs/epic03/wrapper}.
+htm?arnumber=1214704
+\hspace{0pt} \\
 \end{document}

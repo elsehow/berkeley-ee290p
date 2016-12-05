@@ -107,6 +107,13 @@ factor authentication [1] via the simultaneous presentation of the inherence fac
 (brainwave signatures due to the unique folding structures of the cortex) and the
 knowledge factor (the secret mental task).
 
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth]{2EEEG.jpg}
+\caption{Pair of custom-fit earpieces with 3 embedded electrodes each located at the helix and front-facing
+and back-facing within the ear canal.}
+\end{figure}
+
 Research in in-ear EEG is only several years old. Nonetheless, the concept has
 attracted a lot of attention because of the discreetness factor of in-ear EEG over
 traditional scalp-based EEG. A research team at the Imperial College London
@@ -274,13 +281,6 @@ two channels were placed on the right mastoid for later re-referencing, and at a
 forehead above the left eye) for validating the data collected in the ears against a scalp-based measure. 
 Before beginning the experiment, the data from all channels was visualized and participants were asked to
 blink and clench their jaws to confirm all channels were active and properly connected.
-
-\begin{figure}[h]
-\centering
-\includegraphics[width=0.5\textwidth]{2EEEG.jpg}
-\caption{Pair of custom-fit earpieces with 3 embedded electrodes each located at the helix and front-facing
-and back-facing within the ear canal.}
-\end{figure}
 
 During the experiment, participants were seated in a comfortable position in a quiet room facing a laptop screen on which the
 instructions and stimuli were presented. Each task was completed once in sets five trials each, and then
@@ -476,15 +476,16 @@ If the system will need to be calibrated occasionally, these readings
 could help us understand how frequently such calibration sessions
 might need to take place
 
+\subsection{Evaluating a Closed-loop Passthought Authenticator}
 Toward this end, propose to build a working, real-time passthought authenticator.
 After performing an initial calibration setup, similar to our pilot study's protocol, above,
 we will send subjects home with their custom-fit ear EEG, and ask them to use the device to authenticate
 two to three times a day for a week.
 (We may ask subjects to set a recurring event on their calendar to remind them, 
 or pay subjects in accordances with how frequently they authenticated, up to some reasonable maximum).
-After a week, subjects will return to the lab to return their equipment, debrief about their experience, and recieve payment. We will use this opportunity to walk subjects through a relatively detailed post-interview,
-during which we will focus on their experiences with the device (things they may not have posted to others on the platform).
 
+After a week, subjects will return to the lab to return their equipment, debrief about their experience, and recieve payment. We will use this opportunity to walk subjects through a relatively detailed post-interview,
+during which we will focus on their experiences with the device. 
 The goal of this work is to understand both the technical issues facing ear-EEG authentication
 (Does the system work reliably? When and why does it fail?), and the usability issues
 (How do subjects feel about having an EEG device in their ear throughout the day?).
@@ -492,6 +493,7 @@ Finally, this closed-loop BCI system could help us understand how learning effec
 on the human side might impact authentication performance, as the human and machine
 co-adapt during multiple authentication attempts.
 
+\subsection{Adding a Third Factor of Authentication}
 After testing that our system can reliably provide authentication with a 
 a secret passthought (knowledge) and unique EEG signal (inherence),
 we will turn our attention to the final, third factor: posession

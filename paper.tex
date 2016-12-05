@@ -389,8 +389,8 @@ following preprocessing.
 
 
 \begin{table}[h]
-\caption{Authentication accuracy for each sensor position. Left and right ears were a composite of three electrode positions along the helix, front of the ear canal, and back of the ear canal.}
 \centering
+\caption{Authentication accuracy for each sensor position. Left and right ears were a composite of three electrode positions along the helix, front of the ear canal, and back of the ear canal.}
 \begin{tabular}{l|rr|rr|rr}
 \textbf{Task} & \textbf{Left Ear} &  & \textbf{Right Ear} &  & \textbf{Fp1} & \\
 \hline
@@ -439,8 +439,8 @@ a two-tailed t-test to determine our confidence that this set of FARs was drawn 
 from a different distribution from those generated during the right-person, right-task trials.
 
 \begin{table}[h]
-\caption{FARs for right-person, wrong-task, and p-values corresponding to confidence that these FARs were drawn from the same distribution as from the right-person-right-task trials.}
 \centering
+\caption{FARs for right-person, wrong-task, and p-values corresponding to confidence that these FARs were drawn from the same distribution as from the right-person-right-task trials.}
 \begin{tabular}{lrrr}
 \textbf{Task} & \textbf{Right Ear} & \textbf{Left Ear} & \textbf{Fp1}\\
 \hline
@@ -464,6 +464,53 @@ factor associated with the custom-fit EEG earbud, both contribute to the classif
 performance discussed in Section 5.2. We are confident, then, in our claim that this work
 could potentially yield multiple-factor authentication in a single step. However, we
 will need to collect a great deal more data to substantiate this claim rigorously.
+
+\section{Proposed Future Work}
+
+In expanding on the feasibility study we describe above, 
+our first task comprises of collecting data from more subjects,
+ideally for a subject population of 30.
+In addition, we hope to collect more diverse data,
+by taking regular samples over a period of a few weeks,
+and in a variety of circumstances. Our goal here is gague the stability
+of EEG readings over time, and outside of lab environments.
+If the system will need to be calibrated occasionally, these readings
+could help us understand how frequently such calibration sessions
+might need to take place
+
+Toward this end, propose to build a working, real-time passthought authenticator.
+After performing an initial calibration setup, similar to our pilot study's protocol, above,
+we will send subjects home with their custom-fit ear EEG, and ask them to use the device to authenticate
+two to three times a day for a week.
+(We may ask subjects to set a recurring event on their calendar to remind them, 
+or pay subjects in accordances with how frequently they authenticated, up to some reasonable maximum).
+After a week, subjects will return to the lab to return their equipment, debrief about their experience, and recieve payment. We will use this opportunity to walk subjects through a relatively detailed post-interview,
+during which we will focus on their experiences with the device (things they may not have posted to others on the platform).
+
+The goal of this work is to understand both the technical issues facing ear-EEG authentication
+(Does the system work reliably? When and why does it fail?), and the usability issues
+(How do subjects feel about having an EEG device in their ear throughout the day?).
+Finally, this closed-loop BCI system could help us understand how learning effects
+on the human side might impact authentication performance, as the human and machine
+co-adapt during multiple authentication attempts.
+
+After testing that our system can reliably provide authentication with a 
+a secret passthought (knowledge) and unique EEG signal (inherence),
+we will turn our attention to the final, third factor: posession
+(of the unique, custom-fit ear EEG device).
+We propose to cryptographically assure device posession
+by assigning each custom-fit electrode a unique public/private keypair. 
+User accounts could be associated with an earpiece's public key,
+and authentication attempts from the earpiece could be signed its
+its private key, producing authentication attempts that are not
+forgeable by other custom-fit earpieces. 
+
+\section{Conclusion}
+At the end of the proposed project,
+we will have developed an authentication attempt that provides three factors
+(knowledge, inherence and posession) in a single authentication attempt.
+This work could lead to authentication strategies that are both more secure
+and more useable than traditional, password-based authentication.
 
 \section{Proposed Budget}
 \label{sec:org7b5c0f3}

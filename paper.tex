@@ -14,7 +14,7 @@
 \usepackage{amssymb}
 \usepackage{capt-of}
 \usepackage{hyperref}
-\author{Max Curran and Nick Merrill}
+\author{Max T. Curran and Nick Merrill}
 \date{\today}
 \title{One-step, three-factor authentication with in-ear EEG}
 \hypersetup{
@@ -57,16 +57,16 @@ device could easily support a two-step two-factor authentication scheme if
 desired. However, it is easy to understand why users would balk at having to
 enter a passcode \emph{and} provide a fingerprint each time they want to unlock their phone.
 
-In our previous work, we have proposed “one-step two-factor authentication” as a
+In previous work, “one-step two-factor authentication” has been proposed as a
 new approach to authentication that can provide the security benefits of two-
 factor authentication without incurring the hassle costs of two-step verification [1].
 By employing consumer-grade EEG (electroencephalogram) sensing
-technologies, we demonstrated in our 2013 passthoughts study that a user can
+technologies, it was demonstrated in a 2013 passthoughts study that a user can
 submit both a knowledge factor (i.e., secret thought) and an inherence factor
 (i.e., brainwave signal unique to the individual) in a single step by performing a
-single mental task [2]. We demonstrated the robustness of this method against
-impersonation attacks, including conditions where the attacker may have learned
-the target’s secret thought and/or secret task [3].
+single mental task [2]. Additionally, the robustness of this method against
+impersonation attacks was demonstrated, including conditions where the attacker
+may have learned the target’s secret thought and/or secret task [3].
 
 In the present proposal, we will undertake, to the best of our knowledge, the first
 ever study of one-step three-factor authentication. In computer security,
@@ -84,7 +84,7 @@ in our previous work, the user can submit in the same step the possession factor
 in the form of the EEG-sensing ear-piece(s) that are custom-fitted to and worn in
 their ear. These earpieces can serve as physical tokens in the same way as bank
 ATM cards and wearable hardware tokens. Furthermore, because the earpieces
-are custom-fitted to each individual, they will not be able to produce good
+are custom-fitted to each individual, they will likely not be able to produce good
 electrical impedances when worn by a different individual.
 
 \section{Related Work}
@@ -94,7 +94,7 @@ In 2005, Thorpe et al. motivate and outline the design of a passthoughts system,
 where, rather than typing a password, users authenticate 
 by thinking of a passthought [6]. Since 2002, a number of independent groups have achieved 99-
 100\% authentication accuracy using multi-channel sensors placed on the scalp
-[7-10]. In 2013, our group showed that 99\% authentication accuracy can also be
+[7-10]. In 2013, one group showed that 99\% authentication accuracy can also be
 achieved using a consumer-grade single-channel sensor [2]. In particular, the
 lack of signal diversity from multiple EEG channels can be overcome by allowing
 the users to choose their own personalized passthoughts (e.g., sing their favorite
@@ -116,10 +116,10 @@ brainwave signals from within the ear canal [11]. Follow-up work from the same
 group demonstrated its ability to produce signal-to-noise ratios comparable to
 those from conventional EEG electrode placements, robustness to common
 sources of artifacts, and use in a brain-computer interface (BCI) system based on
-auditory evoked potentials and visual evoked potentials [12-14]. Our 2016 study
+auditory evoked potentials and visual evoked potentials [12-14]. Our own 2016 study
 [4] was the first to merge these two streams of work, using in-ear EEG signals for
-user authentication. United Sciences is currently developing a consumer
-hearable called The Aware that will measure EEG from the ear [15].
+user authentication with a consumer-grade device. United Sciences is currently
+developing a consumer hearable called The Aware that will measure EEG from the ear [15].
 Behavioral authentication methods such as keystroke dynamics [16] and speaker
 authentication [17] can be categorized as one-step two-factor authentication
 schemes. In both cases, the knowledge factor (password or passphrase) and
@@ -151,8 +151,8 @@ study: (i) design and build custom-fit hardware, (ii) design and implement
 authentication tasks, (iii) experimental platform and protocol for data collection,
 and (iv) analysis of authentication performance.
 
-In our original 2013 passthoughts study [2], we used unmodified commercial off-
-the-shelf EEG sensing hardware. In our 2016 Ear-EEG passthoughts study [4],
+In a 2013 passthoughts study [2], unmodified commercial off-
+the-shelf EEG sensing hardware was used. In our 2016 Ear-EEG passthoughts study [4],
 we modified the off-the-shelf hardware in order to support data collection from
 within the ear canal. Once modified, the same device could be used for all
 participants. In the current study, we propose to build in-ear EEG sensors that
@@ -168,7 +168,7 @@ of robust quality, given the small volume of the ear cavity, the small surface
 areas of the electrodes, and the limited distances between the electrodes within
 the ear. We will need to experiment with the locations of the electrodes, including
 the reference and ground electrodes, which may be placed on the ear lobes or
-behind the ears.
+behind the ears on the left and right mastoids.
 
 We propose an update and expansion of the authentication tasks, to take
 advantage of our lessons learned from previous studies on the relative strengths
@@ -176,27 +176,60 @@ of different mental tasks, with regards to authentication accuracy and usability
 reported by participants. Furthermore, given the in-ear placement of the
 electrodes, and hence spatial proximity to the temporal lobes, we see a unique
 opportunity to design and test novel authentication tasks based on either auditory
-imagery or auditory steady-state response (ASSR). We will design a suite of
-authentication tasks to include:
+imagery or auditory steady-state response (ASSR). The ten authentication tasks and their
+attributes are listed in the tables below.
 
-\begin{itemize}
-\item Baseline tasks
-\item Motor imagery tasks (with personal secret)
-\item Visual imagery tasks (with personal secret)
-\item Audio imagery tasks (with personal secret)
-\item Mixed audio/visual imagery tasks (with personal secret)
-\item Auditory steady-state response (ASSR) tasks (using external stimuli)
-\end{itemize}
+\begin{table}[h]
+\caption{Set of tasks proposed for authentication with descriptions.}
+\centering
+\begin{tabular}{p{2.7cm}p{11cm}}
+\hline
+\textbf{Task} & \textbf{Description} \\
+\hline
+Breathe & Relaxed breathing with eyes closed.\\
+Breathe - Open & Relaxed breathing with eyes open.\\
+Sport & Imagining attempting a sport motion of participant's choice. \\
+Song & Imagining a song of participant's choice playing. \\
+Song - Open & Imagining a song of participant's choice playing with eyes open. \\
+Speech & Imagining a phrase of participant's choice being spoken.\\
+Listen - Tone & Listening to a continuous tone.\\
+Listen - ASSR & Listening to noise modulated at 40 Hz.\\
+Face & Imagining a person's face of participant's choice.\\
+Sequence & Imagining a person's face, a number, and a word of participant's choice on timed cues.\\
+\hline
+\end{tabular}
+\end{table}
+
+\begin{table}[h]
+\caption{Properties of authentication tasks. Tasks are listed vertically, and various properties of the tasks are listed horizontally,
+with ones and zeroes denoting whether a task does or does not have that property, respectively.}
+\begin{tabular}{p{2.7cm}p{1.7cm}p{1.7cm}p{1.7cm}p{1.7cm}p{1.7cm}p{1.7cm}p{1.7cm}}
+\hline
+\textbf{Task} & \textbf{External Stimuli} & \textbf{Chosen Secret} & \textbf{Eyes Closed} & \textbf{Motor Imagery} & \textbf{Visual Imagery} & \textbf{Audio Imagery} \\
+\hline
+Breathe & 0 & 0 & 1 & 0 & 0 & 0\\
+Breathe - Open & 0 & 0 & 0 & 0 & 0 & 0\\
+Sport & 0 & 1 & 1 & 1 & 0 & 0\\
+Song & 0 & 1 & 1 & 0 & 0 & 1\\
+Song - Open & 0 & 1 & 0 & 0 & 0 & 1\\
+Speech & 0 & 1 & 1 & 0 & 0 & 1\\
+Listen - Tone & 1 & 0 & 1 & 0 & 0 & 0\\
+Listen - ASSR & 1 & 0 & 1 & 0 & 0 & 0\\
+Face & 0 & 1 & 1 & 0 & 1 & 0\\
+Sequence & 1 & 0 & 0 & 0 & 1 & 0\\
+\hline
+\end{tabular}
+\end{table}
 
 This will allow us to quantify the security and usability performances of these
 tasks, both collectively as they contribute to overall authentication accuracy, as
 well as comparatively against one another.
 We will use OpenBCI, a open-source EEG biosensing system as our data
 collection platform. This requires integrating the custom-fit Ear EEG devices with
-the OpenBCI board. We will also need to extend Indra, our own data collector
+the OpenBCI board. We will also need to extend our own data collector
 software, to support the recording of OpenBCI data that is synchronized with
 PsychoPy, which we use for stimuli presentation. We will recruit on the order of
-7-10 participants who are willing to commit to multiple session visits, first for ear
+20-30 participants who are willing to commit to multiple session visits, first for ear
 molding, then for device impedance testing, and then for one or more data
 collection sessions.
 
@@ -220,17 +253,113 @@ authentication tasks, and the recall rates of the personal secrets.
 \section{{\bfseries\sffamily TODO} Preliminary results}
 \label{sec:org914f392}
 
-We performed a very small pilot study (n=2) to better assess our projects' feasibility.
+We performed a very small pilot study (n=2) to better assess our projects' feasibility,
+in particular the new custom-fit ear piece hardware.
 Our cursory analysis indicates that we can successfully
 detect EEG signals from the ear (Section 5.1), that these signals can be used
 for reliable authentication among two people (Section 5.2), and that the success
 of the authenticator relies on the user's chosen secret, and not just the inherence
 factor of the user's unique signal (Section 5.3).
 
-\subsection{{\bfseries\sffamily TODO} Data collection}
+\subsection{Data collection}
 \label{sec:org20a2071}
-\subsection{{\bfseries\sffamily TODO} Validation}
+
+Our initial participants were recruited from a nearby university and scheduled for ear molding
+and impedance checking sessions. Finally, the data collection visit was scheduled and took
+approximately 90 minutes for set up and experiment execution. The OpenBCI system we used
+allows for 8 channels of simultaneous recording, along with separate ground and reference channels.
+Data was initially collected with the ground placed at the center of the forehead, and using the left
+mastoid as reference, though we can easily re-reference to another channel by subtracting a desired
+channel (such as right mastoid). Each earpiece (shown in the image below) contain three channels each: 
+one placed on the helix, and two inside the canal - one front-facing and the other back-facing. The remaining
+two channels were placed on the right mastoid for later re-referencing, and at approximately Fp1 (on the 
+forehead above the left eye) for validating the data collected in the ears against a scalp-based measure. 
+Before beginning the experiment, the data from all channels was visualized and participants were asked to
+blink and clench their jaws to confirm all channels were active and properly connected.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth]{2EEEG.jpg}
+\caption{Pair of custom-fit earpieces with 3 embedded electrodes each located at the helix and front-facing
+and back-facing within the ear canal.}
+\end{figure}
+
+During the experiment, participants were seated in a comfortable position in a quiet room facing a laptop screen on which the
+instructions and stimuli were presented. Each task was completed once in sets five trials each, and then
+each was completed again for another five trials. Each trial was 10 seconds in length, for a total of 10 trials and 
+100 seconds of data collected per task. The instructions were read aloud to the participant by the experimenter, and
+the experiment was advanced using a pointer held in the participant's lap to minimize motion artifacts in the data.  
+The experimenter also recorded the participant's chosen secrets for the sport, song, face, speech, and sequence
+ tasks and reminded the participant of these for the second set of trials.
+
+\subsection{Pilot Data Validation}
 \label{sec:org28f05cd}
+
+Using the pilot data from two participants, we were able to confirm the custom-fit earpieces are able to collect EEG
+data using three tests: good impedances measured for the ear electrodes, alpha-band activity attenuation when a
+participant's eyes were open versus closed, and the presence of a significant ASSR signal.
+
+The recorded impedances of the earpiece electrodes were less than 5 kOhms, a benchmark used widely in previous
+ear EEG work, except one. The left helix electrode of one participant was measured at 9 kOhms, and generally the 
+helix impedances for both participants were higher than their ear canal counterparts. We expected this result, given that the
+helix electrode relies on quality of the the earpiece's fit outside the ear, and is not as securely and tightly placed as the
+electrodes within the ear canal. Nonetheless, the data from all electrodes were tested in the remaining two data quality tests.
+
+For the alpha-attenuation test, data from the "Breathe" task was compared with that of the "Breathe - Open" task. It is a well-
+known feature of EEG data that activity in the alpha-band (approximately 8-12 Hz range) increases when the eyes are closed
+compared with a similar state with eyes open. For both of our pilot participants this attenuation is clearly visible even in just
+a single trial's data. To further validate, we also performed this calculation on the data collected from the Fp1 electrode and see
+the effect clearly here as well. It is important to note that the left ear results are reported using the right mastoid as reference, and
+the right ear results in turn using the left mastoid as reference. When using the same side mastoid for reference the effect is not 
+visible, though may be if we average across many trials. This is not surprising, as the further a reference electrode is from the active
+channel the less "real" signal is being subtracted from the active channel. This has important design implications for eventual 
+real-world deployment of this authentication method however, as it will likely involve pieces on or around both ears to properly 
+function, and not just one. The figures below show the alpha attenuation in the left and right ear channels, as well as Fp1.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth]{001_AlphaAtt_Fp1.jpg}
+\caption{Alpha-attenuation (8-12 Hz range) in Fp1 channel, referenced at left mastoid, for comparison to ear channels. Red indicates breathing data with
+eyes open, blue indicates the same task with eyes closed.}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \begin{minipage}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{001_AlphaAtt_Left.jpg}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{001_AlphaAtt_Right.jpg}
+  \end{minipage}
+\caption{Alpha-attenuation (8-12 Hz range) in left and right ear canal channels, referenced at opposite mastoids respectfully. Red indicates breathing data with
+eyes open, blue indicates the same task with eyes closed.}
+\end{figure}
+
+Finally, for the ASSR test we calculated power spectra for data from the "Listen - ASSR" task. The audio stimulus used for this task is modulated 
+at 40 Hz, which should, in turn, produce an EEG response visible in the data at 40 Hz. Strangely, in our tests we do see an ASSR spike but it is located 
+around 74 Hz instead. While this has us somewhat perplexed about our stimulus, the purpose of this test was to ensure that the response seen in the ear channels 
+matched the response seen from the Fp1 recordings, which is evident comparing the figures below.
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth]{001_ASSR_Fp1.jpg}
+\caption{Power spectrum for data collected from the Fp1 channel during 40 Hz ASSR stimulus. An ASSR spike is clearly visible, though not at 40 Hz where it was expected.}
+\end{figure}
+
+\begin{figure}[h]
+  \centering
+  \begin{minipage}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{001_ASSR_Left.jpg}
+  \end{minipage}
+  \hfill
+  \begin{minipage}[b]{0.45\textwidth}
+    \includegraphics[width=\textwidth]{001_ASSR_Right.jpg}
+  \end{minipage}
+\caption{Power spectra for data collected from the earpiece channels during 40 Hz ASSR stimulus. Again, the spike is clearly visible though not at 40 Hz, however it 
+does match the }
+\end{figure}
+
 \subsection{Authentication performance}
 \label{sec:orgfc9b24a}
 
@@ -259,24 +388,24 @@ resulting in 30 samples per participant, per task,
 following preprocessing.
 
 
-\begin{table}[htbp]
+\begin{table}[h]
 \caption{Authentication accuracy for each sensor position. Left and right ears were a composite of three electrode positions along the helix, front of the ear canal, and back of the ear canal.}
 \centering
-\begin{tabular}{lrrrrrr}
-task & Left ear &  & Right Ear &  & fp1 & \\
+\begin{tabular}{l|rr|rr|rr}
+\textbf{Task} & \textbf{Left Ear} &  & \textbf{Right Ear} &  & \textbf{Fp1} & \\
 \hline
- & FAR & FRR & FAR & FRR & FAR & FRR\\
+ & \textbf{FAR} & \textbf{FRR} & \textbf{FAR} & \textbf{FRR} & \textbf{FAR} & \textbf{FRR}\\
 \hline
-speech & 0 & 0 & 0 & 0 & 0 & 0\\
-face & 0 & 0 & 0 & 0.002 & 0 & 0\\
-breathe & 0 & 0 & 0 & 0 & 0 & 0\\
-listennoise & 0 & 0 & 0 & 0 & 0 & 0\\
-song (eyes open) & 0 & 0 & 0 & 0 & 0 & 0\\
-song & 0 & 0 & 0 & 0 & 0 & 0\\
-sequence & 0 & 0 & 0 & 0 & 0 & 0\\
-listentone & 0 & 0 & 0 & 0.009 & 0 & 0\\
-breathe (eyes open) & 0.039 & 0 & 0 & 0 & 0 & 0\\
-sport & 0.039 & 0.036 & 0 & 0 & 0 & 0\\
+Breathe & 0 & 0 & 0 & 0 & 0 & 0\\
+Breathe - Open & 0.039 & 0 & 0 & 0 & 0 & 0\\
+Sport & 0.039 & 0.036 & 0 & 0 & 0 & 0\\
+Song & 0 & 0 & 0 & 0 & 0 & 0\\
+Song - Open & 0 & 0 & 0 & 0 & 0 & 0\\
+Speech & 0 & 0 & 0 & 0 & 0 & 0\\
+Listen - Tone & 0 & 0 & 0 & 0.009 & 0 & 0\\
+Listen - ASSR & 0 & 0 & 0 & 0 & 0 & 0\\
+Face & 0 & 0 & 0 & 0.002 & 0 & 0\\
+Sequence & 0 & 0 & 0 & 0 & 0 & 0\\
 \end{tabular}
 \end{table}
 
@@ -309,22 +438,22 @@ as the FAR for right-person, right-task. We calculated the FAR for each task, an
 a two-tailed t-test to determine our confidence that this set of FARs was drawn from
 from a different distribution from those generated during the right-person, right-task trials.
 
-\begin{table}[htbp]
+\begin{table}[h]
 \caption{FARs for right-person, wrong-task, and p-values corresponding to confidence that these FARs were drawn from the same distribution as from the right-person-right-task trials.}
 \centering
 \begin{tabular}{lrrr}
-Task & Right ear & Left ear & fp1\\
+\textbf{Task} & \textbf{Right Ear} & \textbf{Left Ear} & \textbf{Fp1}\\
 \hline
-speech & 0.311 & 0.116 & 0\\
-face & 0.355 & 0.055 & 0\\
-breathe & 0 & 0.240 & 0\\
-listennoise & 0.322 & 0.078 & 0\\
-song\(_{\text{o}}\) & 0 & 0.166 & 0\\
-song & 0 & 0.211 & 0\\
-sequence & 0.433 & 0 & 0\\
-listentone & 0 & 0.333 & 0\\
-breathe\(_{\text{o}}\) & 0.254 & 0.129 & 0\\
-sport & 0.222 & 0.135 & 0\\
+Breathe & 0 & 0.240 & 0\\
+Breathe - Open & 0.254 & 0.129 & 0\\
+Sport & 0.222 & 0.135 & 0\\
+Song & 0 & 0.211 & 0\\
+Song - Open & 0 & 0.166 & 0\\
+Speech & 0.311 & 0.116 & 0\\
+Listen - Tone & 0 & 0.333 & 0\\
+Listen - ASSR & 0.322 & 0.078 & 0\\
+Face & 0.355 & 0.055 & 0\\
+Sequence & 0.433 & 0 & 0\\
 \hline
 \textbf{p-value} & \textbf{*0.0076} & \textbf{*0.009} & N/A\\
 \end{tabular}
@@ -336,17 +465,27 @@ performance discussed in Section 5.2. We are confident, then, in our claim that 
 could potentially yield multiple-factor authentication in a single step. However, we
 will need to collect a great deal more data to substantiate this claim rigorously.
 
-\section{Schedule and Budget}
+\section{Proposed Budget}
 \label{sec:org7b5c0f3}
-We propose a 12-month schedule with two graduate students working on the
-project:
+With two graduate students working on the project and a target sample size of 30 participants
+we propose the following budget:
 
 \begin{itemize}
-\item Months 1-6: hardware development for custom-fit earpiece; integration with OpenBCI; testing
-\item Months 1-6: software integration between OpenBCI, PsychoPy, and Indra; design of new authentication tasks and implementation in PsychoPy
-\item Months 7-8: experimental data collection
-\item Months 9-12: data analysis; write and submit research papers
+\item 2x 8-Channel OpenBCI Systems: \$1,200.00 (\$600.00 each)
+\item 30x Pairs of custom-fit earpieces with 3 embedded electrodes including labor cost: \$5,100.00 (\$170.00 per pair)
+\item 30x Compensation for two visits per participant: \$2,400.00 (\$80.00 each)
+\item 2x Graduate student support for two years: \$144,000.00 (\$72,000.00 each)
+\item Travel and registration costs for conferences: \$6,000
+\item \textbf{Total: \$158,700.00}
 \end{itemize}
+
+\section{Group Member Contributions}
+Work for this project was approximately split evenly between the two group members. Both group members were involved in the project
+ideation and literature review, preparation of initial and final presentations, and preparation of this final proposal. Individually, Max created
+the experimental stimulus in PsychoPy and carried out the initial data collection of the pilot participants with some support from Nick. Max 
+also ran the alpha-attenuation and ASSR data validation analyses. Along with assisting in data collection, Nick developed and ran the machine
+ learning authentication analyses on our pilot data.
+
 \section{References}
 \label{sec:org0b0b225}
 \setlength\parindent{0pt}

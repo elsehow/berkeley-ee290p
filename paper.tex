@@ -180,45 +180,43 @@ imagery or auditory steady-state response (ASSR). The ten authentication tasks a
 attributes are listed in the tables below.
 
 \begin{table}[h]
-\caption{Set of tasks proposed for authentication with descriptions.}
 \centering
-\begin{tabular}{p{2.7cm}p{11cm}}
-\hline
-\textbf{Task} & \textbf{Description} \\
+\begin{tabular}{ll}
+\textbf{\textbf{Task}} & \textbf{\textbf{Description}}\\
 \hline
 Breathe & Relaxed breathing with eyes closed.\\
 Breathe - Open & Relaxed breathing with eyes open.\\
-Sport & Imagining attempting a sport motion of participant's choice. \\
-Song & Imagining a song of participant's choice playing. \\
-Song - Open & Imagining a song of participant's choice playing with eyes open. \\
+Sport & Sport-related motor imagery of participant's choice.\\
+Song & Imagining a song of participant's choice playing.\\
+Song - Open & Imagining a song with eyes open.\\
 Speech & Imagining a phrase of participant's choice being spoken.\\
-Listen - Tone & Listening to a continuous tone.\\
+Listen & Tone \& Listening to a continuous tone.\\
 Listen - ASSR & Listening to noise modulated at 40 Hz.\\
 Face & Imagining a person's face of participant's choice.\\
-Sequence & Imagining a person's face, a number, and a word of participant's choice on timed cues.\\
+Sequence & On timed cues, imagine a face, a number, and a word.\\
 \hline
 \end{tabular}
+\caption{Set of tasks proposed for authentication with descriptions.}
 \end{table}
 
 \begin{table}[h]
-\caption{Properties of authentication tasks. Tasks are listed vertically, and various properties of the tasks are listed horizontally,
-with ones and zeroes denoting whether a task does or does not have that property, respectively.}
-\begin{tabular}{p{2.7cm}p{1.7cm}p{1.7cm}p{1.7cm}p{1.7cm}p{1.7cm}p{1.7cm}p{1.7cm}}
+\centering
+\begin{tabular}{lllll}
+Task & External stimuli? & Personal secret? & Eyes? & Imagery?\\
 \hline
-\textbf{Task} & \textbf{External Stimuli} & \textbf{Chosen Secret} & \textbf{Eyes Closed} & \textbf{Motor Imagery} & \textbf{Visual Imagery} & \textbf{Audio Imagery} \\
-\hline
-Breathe & 0 & 0 & 1 & 0 & 0 & 0\\
-Breathe - Open & 0 & 0 & 0 & 0 & 0 & 0\\
-Sport & 0 & 1 & 1 & 1 & 0 & 0\\
-Song & 0 & 1 & 1 & 0 & 0 & 1\\
-Song - Open & 0 & 1 & 0 & 0 & 0 & 1\\
-Speech & 0 & 1 & 1 & 0 & 0 & 1\\
-Listen - Tone & 1 & 0 & 1 & 0 & 0 & 0\\
-Listen - ASSR & 1 & 0 & 1 & 0 & 0 & 0\\
-Face & 0 & 1 & 1 & 0 & 1 & 0\\
-Sequence & 1 & 0 & 0 & 0 & 1 & 0\\
+Breathe & No & No & Closed & None\\
+Breathe - open & No & No & Open & None\\
+Sport & No & Yes & Closed & Motor\\
+Song & No & Yes & Closed & Aural\\
+Song - open & No & Yes & Open & Aural\\
+Speech & No & Yes & Closed & Aural\\
+Listen - Tone & Yes & No & Closed & None\\
+Listen - ASSR & Yes & No & Closed & None\\
+Face & No & Yes & Closed & Visual\\
+Sequence & Yes & Yes & Open & Visual\\
 \hline
 \end{tabular}
+\caption{Properties of authentication tasks. We selected tasks with a variety of different properteries, but preferred tasks that did not require external stimuli, as the need to present such stimuli at authentication time could present challenges for usability, and user security.}
 \end{table}
 
 This will allow us to quantify the security and usability performances of these
@@ -250,7 +248,7 @@ Finally, we will evaluate the usability of custom-fit Ear EEG authentication alo
 several dimensions. They include the comfort and fit of the earpieces, the
 preparatory steps of using the devices, the ease and repeatability of the
 authentication tasks, and the recall rates of the personal secrets.
-\section{{\bfseries\sffamily TODO} Preliminary results}
+\section{Preliminary results}
 \label{sec:org914f392}
 
 We performed a very small pilot study (n=2) to better assess our projects' feasibility,
@@ -390,7 +388,6 @@ following preprocessing.
 
 \begin{table}[h]
 \centering
-\caption{Authentication accuracy for each sensor position. Left and right ears were a composite of three electrode positions along the helix, front of the ear canal, and back of the ear canal.}
 \begin{tabular}{l|rr|rr|rr}
 \textbf{Task} & \textbf{Left Ear} &  & \textbf{Right Ear} &  & \textbf{Fp1} & \\
 \hline
@@ -407,6 +404,7 @@ Listen - ASSR & 0 & 0 & 0 & 0 & 0 & 0\\
 Face & 0 & 0 & 0 & 0.002 & 0 & 0\\
 Sequence & 0 & 0 & 0 & 0 & 0 & 0\\
 \end{tabular}
+\caption{Authentication accuracy for each sensor position. Left and right ears were a composite of three electrode positions along the helix, front of the ear canal, and back of the ear canal.}
 \end{table}
 
 Finally, for each subject, for each task, we trained a binary classifier 
@@ -415,7 +413,7 @@ as positive examples. The wrong person, performing any task, were taken as negat
 examples. For a random, balanced subsample of those groups, we trained an ensemble
 binary classifier with XGboost. For the remainder of the data, we tested the 
 classifier's accuracy, measuring the false acceptance rate (FAR) and the false
-rejection rate (FRR) (Table 1).
+rejection rate (FRR) (Table 3).
 
 Overall, FAR and FRR were extremely low across the board. The right ear 
 performed better than the left ear (possibly because the reference was on
@@ -440,7 +438,6 @@ from a different distribution from those generated during the right-person, righ
 
 \begin{table}[h]
 \centering
-\caption{FARs for right-person, wrong-task, and p-values corresponding to confidence that these FARs were drawn from the same distribution as from the right-person-right-task trials.}
 \begin{tabular}{lrrr}
 \textbf{Task} & \textbf{Right Ear} & \textbf{Left Ear} & \textbf{Fp1}\\
 \hline
@@ -457,9 +454,10 @@ Sequence & 0.433 & 0 & 0\\
 \hline
 \textbf{p-value} & \textbf{*0.0076} & \textbf{*0.009} & N/A\\
 \end{tabular}
+\caption{FARs for right-person, wrong-task, and p-values corresponding to confidence that these FARs were drawn from the same distribution as from the right-person-right-task trials.}
 \end{table}
 
-Our low p-values (Table 2) indicate that the passthought, as well as the inherence
+Our low p-values (Table 4) indicate that the passthought, as well as the inherence
 factor associated with the custom-fit EEG earbud, both contribute to the classifier
 performance discussed in Section 5.2. We are confident, then, in our claim that this work
 could potentially yield multiple-factor authentication in a single step. However, we

@@ -80,7 +80,7 @@ possible.
 We propose the use of custom-fit Ear EEG technology as the platform for
 investigating the feasibility, performance, and usability of one-step three-factor
 authentication. In addition to the same knowledge factor and inherence factor as
-in our previous work, the user can submit in the same step the possession factor
+in previous work, the user can submit in the same step the possession factor
 in the form of the EEG-sensing ear-piece(s) that are custom-fitted to and worn in
 their ear. These earpieces can serve as physical tokens in the same way as bank
 ATM cards and wearable hardware tokens. Furthermore, because the earpieces
@@ -184,7 +184,7 @@ reported by participants. Furthermore, given the in-ear placement of the
 electrodes, and hence spatial proximity to the temporal lobes, we see a unique
 opportunity to design and test novel authentication tasks based on either auditory
 imagery or auditory steady-state response (ASSR). The ten authentication tasks and their
-attributes are listed in the tables below.
+attributes are listed in tables 1 and 2 below.
 
 \begin{table}[h]
 \centering
@@ -226,11 +226,16 @@ Sequence & Yes & Yes & Open & Visual\\
 \caption{Properties of authentication tasks. We selected tasks with a variety of different properteries, but preferred tasks that did not require external stimuli, as the need to present such stimuli at authentication time could present challenges for usability, and user security.}
 \end{table}
 
-This will allow us to quantify the security and usability performances of these
+We will quantify the security and usability performances of these
 tasks, both collectively as they contribute to overall authentication accuracy, as
 well as comparatively against one another.
 We will use OpenBCI, a open-source EEG biosensing system as our data
-collection platform. This requires integrating the custom-fit Ear EEG devices with
+collection platform. OpenBCI, with a price tag of about \$600,
+is an affordable alternative to medical-grade EEG systems that can
+cost tens of thousands of dollars. Recent work has demonstrated the robustness 
+of OpenBCI compared to an industry standard medical-grade EEG system, 
+particularly for non-medical use cases such as the one we propose [26].
+Using OpenBCI requires integrating the custom-fit Ear EEG devices with
 the OpenBCI board. We will also need to extend our own data collector
 software, to support the recording of OpenBCI data that is synchronized with
 PsychoPy, which we use for stimuli presentation. We will recruit on the order of
@@ -275,15 +280,15 @@ approximately 90 minutes for set up and experiment execution. The OpenBCI system
 allows for 8 channels of simultaneous recording, along with separate ground and reference channels.
 Data was initially collected with the ground placed at the center of the forehead, and using the left
 mastoid as reference, though we can easily re-reference to another channel by subtracting a desired
-channel (such as right mastoid). Each earpiece (shown in the image below) contain three channels each: 
+channel (such as right mastoid). Each earpiece (shown in the image below) contain three channels: 
 one placed on the helix, and two inside the canal - one front-facing and the other back-facing. The remaining
 two channels were placed on the right mastoid for later re-referencing, and at approximately Fp1 (on the 
 forehead above the left eye) for validating the data collected in the ears against a scalp-based measure. 
 Before beginning the experiment, the data from all channels was visualized and participants were asked to
-blink and clench their jaws to confirm all channels were active and properly connected.
+blink and clench their jaws to confirm visibly that all channels were active and properly connected.
 
 During the experiment, participants were seated in a comfortable position in a quiet room facing a laptop screen on which the
-instructions and stimuli were presented. Each task was completed once in sets five trials each, and then
+instructions and stimuli were presented using PsychoPy. Each task was completed once in sets five trials each, and then
 each was completed again for another five trials. Each trial was 10 seconds in length, for a total of 10 trials and 
 100 seconds of data collected per task. The instructions were read aloud to the participant by the experimenter, and
 the experiment was advanced using a pointer held in the participant's lap to minimize motion artifacts in the data.  
@@ -297,10 +302,10 @@ Using the pilot data from two participants, we were able to confirm the custom-f
 data using three tests: good impedances measured for the ear electrodes, alpha-band activity attenuation when a
 participant's eyes were open versus closed, and the presence of a significant ASSR signal.
 
-The recorded impedances of the earpiece electrodes were less than 5 kOhms, a benchmark used widely in previous
-ear EEG work, except one. The left helix electrode of one participant was measured at 9 kOhms, and generally the 
+The recorded impedances of the earpiece electrodes were less than 5 kOhms except one, a benchmark used widely in previous
+ear EEG work. The left helix electrode of one participant was measured at 9 kOhms, and generally the 
 helix impedances for both participants were higher than their ear canal counterparts. We expected this result, given that the
-helix electrode relies on quality of the the earpiece's fit outside the ear, and is not as securely and tightly placed as the
+helix electrode relies on quality of the earpiece's fit outside the ear for good contact, and is not as securely and tightly placed as the
 electrodes within the ear canal. Nonetheless, the data from all electrodes were tested in the remaining two data quality tests.
 
 For the alpha-attenuation test, data from the "Breathe" task was compared with that of the "Breathe - Open" task. It is a well-
@@ -309,9 +314,9 @@ compared with a similar state with eyes open. For both of our pilot participants
 a single trial's data. To further validate, we also performed this calculation on the data collected from the Fp1 electrode and see
 the effect clearly here as well. It is important to note that the left ear results are reported using the right mastoid as reference, and
 the right ear results in turn using the left mastoid as reference. When using the same side mastoid for reference the effect is not 
-visible, though may be if we average across many trials. This is not surprising, as the further a reference electrode is from the active
+visible, though it may be if we average across many trials. This is not surprising, as the further a reference electrode is from the active
 channel the less "real" signal is being subtracted from the active channel. This has important design implications for eventual 
-real-world deployment of this authentication method however, as it will likely involve pieces on or around both ears to properly 
+real-world deployment of this authentication method however, as it will likely require pieces worn on or around both ears to properly 
 function, and not just one. The figures below show the alpha attenuation in the left and right ear channels, as well as Fp1.
 
 \begin{figure}[h]
@@ -355,7 +360,7 @@ matched the response seen from the Fp1 recordings, which is evident comparing th
     \includegraphics[width=\textwidth]{001_ASSR_Right.jpg}
   \end{minipage}
 \caption{Power spectra for data collected from the earpiece channels during 40 Hz ASSR stimulus. Again, the spike is clearly visible though not at 40 Hz, however it 
-does match the }
+does match the activity measured at Fp1.}
 \end{figure}
 
 \subsection{Authentication performance}
@@ -365,10 +370,10 @@ Following [5], we use logarithmic binning to produce
 compressed feature vectors of a variable size. This technique
 has been show to offer robust, linear classifiability in healthy
 subjects. It is unique in its use of the entire frequency
-spectrum. Since EEG activity is associated with frequencies
+spectrum. Since EEG activity is primarily associated with frequencies
 from 1-40Hz, we presume this range contains the majority of
 relevant signal. However, we do not rule out the possibility
-that useful signal exists in other frequency ranges. Muscular
+that useful signal exists in other frequency ranges. Slight muscular
 activity, for example, might be correlated with mental gestures
 in some cases. Logarithmic binning produces feature vectors
 biased toward known sources of signal, while still including
@@ -426,7 +431,7 @@ achieving perfect FAR and FRR scores on all tasks.
 
 Though our classifier's accuracy is strong, we still cannot say that it relies 
 on both knowledge and inherence to authenticate the subject. Is it the passthought
-that the classifier is authenticating, or do users (or earphones) simply have characteristic
+that the classifier is authenticating, or do users (or earpieces) simply have characteristic
 EEG readings? 
 
 If our classifier \emph{only} relied on inherence, we would expect the right person performing
@@ -470,11 +475,11 @@ our first task comprises of collecting data from more subjects,
 ideally for a subject population of 30.
 In addition, we hope to collect more diverse data,
 by taking regular samples over a period of a few weeks,
-and in a variety of circumstances. Our goal here is gague the stability
+and in a variety of circumstances. Our goal here is to gauge the stability
 of EEG readings over time, and outside of lab environments.
 If the system will need to be calibrated occasionally, these readings
 could help us understand how frequently such calibration sessions
-might need to take place
+might need to take place.
 
 \subsection{Evaluating a Closed-loop Passthought Authenticator}
 Toward this end, propose to build a working, real-time passthought authenticator.
@@ -482,9 +487,9 @@ After performing an initial calibration setup, similar to our pilot study's prot
 we will send subjects home with their custom-fit ear EEG, and ask them to use the device to authenticate
 two to three times a day for a week.
 (We may ask subjects to set a recurring event on their calendar to remind them, 
-or pay subjects in accordances with how frequently they authenticated, up to some reasonable maximum).
+or pay subjects in accordance with how frequently they authenticated, up to some reasonable maximum).
 
-After a week, subjects will return to the lab to return their equipment, debrief about their experience, and recieve payment. We will use this opportunity to walk subjects through a relatively detailed post-interview,
+After a week, subjects will return to the lab to return their equipment, debrief about their experience, and receive payment. We will use this opportunity to walk subjects through a relatively detailed post-interview,
 during which we will focus on their experiences with the device. 
 The goal of this work is to understand both the technical issues facing ear-EEG authentication
 (Does the system work reliably? When and why does it fail?), and the usability issues
@@ -496,9 +501,9 @@ co-adapt during multiple authentication attempts.
 \subsection{Adding a Third Factor of Authentication}
 After testing that our system can reliably provide authentication with a 
 a secret passthought (knowledge) and unique EEG signal (inherence),
-we will turn our attention to the final, third factor: posession
+we will turn our attention to the final, third factor: possession
 (of the unique, custom-fit ear EEG device).
-We propose to cryptographically assure device posession
+We propose to cryptographically assure device possession
 by assigning each custom-fit electrode a unique public/private keypair. 
 User accounts could be associated with an earpiece's public key,
 and authentication attempts from the earpiece could be signed its
@@ -508,7 +513,7 @@ forgeable by other custom-fit earpieces.
 \section{Conclusion}
 At the end of the proposed project,
 we will have developed an authentication attempt that provides three factors
-(knowledge, inherence and posession) in a single authentication attempt.
+(knowledge, inherence and possession) in a single authentication attempt.
 This work could lead to authentication strategies that are both more secure
 and more useable than traditional, password-based authentication.
 
@@ -665,4 +670,9 @@ Rehabilitation Engineering, vol. 11, no. 2, pp. 141–144, Jun. 2003.
 [Online]. Available: \url{http://ieeexplore.ieee.org/lpdocs/epic03/wrapper}.
 htm?arnumber=1214704
 \hspace{0pt} \\
+
+[26] Frey, Jeremy. "Comparison of an open-hardware electroencephalography amplifier with medical
+grade device in brain-computer interface applications." arXiv preprint arXiv:1606.02438 (2016).
+\hspace{0pt} \\
+
 \end{document}
